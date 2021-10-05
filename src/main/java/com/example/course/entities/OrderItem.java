@@ -22,6 +22,7 @@ public class OrderItem implements Serializable {
 	public OrderItem() {
 	}
 
+	// e posto no construtor apenas as classes responsaveis por dar vida a classe composta ('OrderItemPK')
 	public OrderItem(Order order, Product produt, Integer quantity, Double price) {
 		super();
 		id.setOrder(order);
@@ -30,6 +31,8 @@ public class OrderItem implements Serializable {
 		this.price = price;
 	}
 	
+	// mesmo que as classes 'Order' e 'Product nao sejam atributos diretos da classe, e necessario fazer seus 
+	// gets e sets para conseguirmos acessa-los quando precisarmos
 	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
@@ -39,7 +42,7 @@ public class OrderItem implements Serializable {
 		id.setOrder(order);
 	}
 	
-	public Product product() {
+	public Product getProduct() {
 		return id.getProduct();
 	}
 	
