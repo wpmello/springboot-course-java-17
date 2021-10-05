@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tb_products")
@@ -24,9 +26,8 @@ public class Product implements Serializable {
 	private Double price;
 	private String imgIrl;
 	
-	// annotation para impedir que o JPA tente interpretar esse atributo
-	// associacao sera feita no proximo commit
-	@Transient
+	@ManyToMany
+	@JoinTable(name = "tb_products_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<>();
 	
 	public Product(){
