@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import com.example.course.entities.Order;
 import com.example.course.entities.Product;
 
+// == 'OrderitemPK' e uma class composta de chave primaria
+
 @Embeddable
 public class OrderItemPK implements Serializable {
 	private static final long serialVersionUID = 1L;
