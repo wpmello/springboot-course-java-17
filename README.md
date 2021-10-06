@@ -1,5 +1,4 @@
 # Springboot-course-java-17
-Projeto criado durante o curso de POO Java
 ## Objetivo
 - Criar projeto Spring Boot Java
 - Implementar modelo de domínio
@@ -17,3 +16,5 @@ Projeto criado durante o curso de POO Java
 - Postman
 - PostegreSQL
 - Heroku
+---
+[O curso](https://www.udemy.com/course/java-curso-completo/)
