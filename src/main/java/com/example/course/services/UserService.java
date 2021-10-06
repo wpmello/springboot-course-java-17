@@ -3,6 +3,8 @@ package com.example.course.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -15,6 +17,8 @@ import com.example.course.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService {
+	
+	// == todas as excecoes que os 'catchs' estao recebendo foram encontradas usando o '.printStackTrace()' ==
 
 	@Autowired
 	private UserRepository repository;
@@ -45,9 +49,13 @@ public class UserService {
 	// e usado o '.getById' quando se quer retornar a referencia da entidade, diferente do '.findById'
 	//  que retorna um Optional
 	public User update(Long id, User obj) {
-		User entity = repository.getById(id);
-		update(entity, obj);
-		return repository.save(entity);
+		try {
+			User entity = repository.getById(id);
+			update(entity, obj);
+			return repository.save(entity);
+		} catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 	private void update(User entity, User obj) {
