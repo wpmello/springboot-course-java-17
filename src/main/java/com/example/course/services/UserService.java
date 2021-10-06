@@ -31,4 +31,18 @@ public class UserService {
 	public void delete(Long id) {
 		repository.deleteById(id);
 	}
+	
+	// e usado o '.getById' quando se quer retornar a referencia da entidade, diferente do '.findById'
+	//  que retorna um Optional
+	public User update(Long id, User obj) {
+		User entity = repository.getById(id);
+		update(entity, obj);
+		return repository.save(entity);
+	}
+
+	private void update(User entity, User obj) {
+		entity.setName(obj.getName());
+		entity.setEmail(obj.getEmail());
+		entity.setPhone(obj.getPhone());
+	}
 }
